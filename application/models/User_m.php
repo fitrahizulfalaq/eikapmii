@@ -9,7 +9,7 @@ class User_m extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('tb_user');
 		$this->db->where('email',$post['username']);
-		$this->db->where('status','1');
+		// $this->db->where('status','1');
 		$this->db->where('password',sha1($post['password']));
 		$query = $this->db->get();
 		return $query; 
@@ -43,9 +43,11 @@ class User_m extends CI_Model {
 	  }
 	  $params['nama'] =  $post['nama'];
 	  $params['tempat_lahir'] =  $post['tempat_lahir'];
-	  $params['tgl_lahir'] =  $post['tgl_lahir'];
+	  $tanggal =  $post['tanggal'];
+	  $bulan =  $post['bulan'];
+	  $tahun =  $post['tahun'];
+	  $params['tgl_lahir'] =  date("Y:m:d", strtotime($tahun."-".$bulan."-".$tanggal));
 	  $params['hp'] =  $post['hp'];
-	  $params['agama'] =  $post['agama'];
 	  $params['kelamin'] =  $post['kelamin'];
 	  $params['provinsi'] =  $post['provinsi'];
 	  $params['kota'] =  $post['kota'];
@@ -55,9 +57,9 @@ class User_m extends CI_Model {
 	  $params['pernikahan'] =  $post['pernikahan'];
 	  $params['pendidikan_terakhir'] =  $post['pendidikan_terakhir'];
 	  $params['pekerjaan_utama'] =  $post['pekerjaan_utama'];
-	  $params['keanggotaan'] =  $post['keanggotaan'];
+	  $params['angkatan'] =  $post['angkatan'];
 	  $params['tahun_bergabung'] =  $post['tahun_bergabung'];
-	  $params['alasan'] =  $post['alasan'];
+	  $params['status'] =  "1";
 	  if ($post['foto'] != null) {
   	  $params['foto'] =  $post['foto'];
   	} else {
@@ -66,6 +68,6 @@ class User_m extends CI_Model {
 
 	  $this->db->where('id',$params['id']);
 	  $this->db->update('tb_user',$params);
-	}	
+	}
 
 }

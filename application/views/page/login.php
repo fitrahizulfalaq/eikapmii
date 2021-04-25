@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>.: LOGIN E-PETANI API :.</title>
+  <title>.: LOGIN E-IKAPMII KOTA MALANG :.</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,7 +20,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page bg-green" style="background-image: url(<?= base_url('/assets/dist/img/tiles.jpg')?>); background-repeat: repeat; background-attachment: fixed;">
+<body class="hold-transition login-page bg-green" style="background-image: url(<?= base_url('/assets/dist/img/tiles.jpg')?>); background-repeat: no-repeat; background-size: cover;  background-position: center;">
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card">
@@ -49,7 +49,7 @@
         </div>
         <div class="row">          
           <div class="col-12">
-            <button type="submit" name="login" class="btn btn-success btn-block">LOGIN <i class="fas fa-forward"></i></button>
+            <button type="submit" name="login" class="btn btn-primary btn-block">LOGIN <i class="fas fa-forward"></i></button>
           </div>
         </div>
       </form>

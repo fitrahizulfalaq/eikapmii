@@ -21,20 +21,8 @@
   <!-- Aous -->
   <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/aos/aos.css">
   <?php 
-    if ($this->uri->segment(1) == "kelompok" and $this->uri->segment(2) == "anggota") {
-      $this->load->view("script/datatables-header");
-    } elseif ($this->uri->segment(1) == "kelompok" and $this->uri->segment(2) == null) {
-      $this->load->view("script/datatables-header");
-    } elseif ($this->uri->segment(1) == "anggota") {
-      $this->load->view("script/datatables-header");
-    } elseif ($this->uri->segment(1)=="video" and $this->uri->segment(2)=="edit" or $this->uri->segment(1)=="video" and $this->uri->segment(2)=="tambah") {
-      $this->load->view("script/summernote-header");
-    } elseif ($this->uri->segment(1)=="modul" and $this->uri->segment(2)=="edit" or $this->uri->segment(1)=="modul" and $this->uri->segment(2)=="tambah") {
-      $this->load->view("script/summernote-header");
-    } elseif ($this->uri->segment(1)=="info" and $this->uri->segment(2)=="edit" or $this->uri->segment(1)=="info" and $this->uri->segment(2)=="tambah") {
-      $this->load->view("script/summernote-header");
-    } elseif ($this->uri->segment(1)=="donasi" and $this->uri->segment(2)=="admin") {
-      $this->load->view("script/datatables-header");
+    if (isset($header_script)) {
+      $this->load->view("script/".$header_script);
     }
   ?>
 </head>
@@ -42,7 +30,7 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-green navbar-dark">
+  <nav class="main-header navbar navbar-expand navbar-warning navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item d-none d-sm-inline-block ">
@@ -67,9 +55,9 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-green elevation-4">
+  <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="<?=base_url()?>" class="brand-link bg-info">
+    <a href="<?=base_url()?>" class="brand-link bg-primary">
       <img src="<?=base_url()?>/assets/dist/img/logo-lembaga.png" alt="Logo Lembaga" class="brand-image" style="opacity: 2.8;" width="200px">
       <!-- <span class="brand-text font-weight-normal"><b><?= ucfirst($this->fungsi->pilihan_advanced("setting","kode","namaapk")->row("keterangan"))?></b></span> -->
     </a>
@@ -94,20 +82,26 @@
             <i class="nav-icon fas fa-home"></i><p>Beranda</p></a>            
           </li>
           <li class="nav-header">FITUR</li>
+          <li class="nav-item">            
+            <a href="<?=site_url('profil')?>" class="nav-link <?=$this->uri->segment(1) == 'profil' ? "active" : ""?>">
+            <i class="nav-icon fas fa-leaf"></i><p>Profil</p></a>
+          </li>
           <?php if ($this->session->tipe_user < 3) { } else { ?>
           <li class="nav-item">            
             <a href="<?=site_url('kelompok')?>" class="nav-link <?=$this->uri->segment(1) == 'kelompok' ? "active" : ""?>">
-            <i class="nav-icon fas fa-leaf"></i><p>Kelompok</p></a>
+            <i class="nav-icon fas fa-leaf"></i><p>Komisariat</p></a>
           </li>
+          <li class="nav-item">            
+            <a href="<?=site_url('anggota')?>" class="nav-link <?=$this->uri->segment(1) == 'anggota' ? "active" : ""?>">
+            <i class="nav-icon fas fa-leaf"></i><p>Rayon</p></a>
+          </li>
+          <?php } ?>
+          <?php if ($this->session->tipe_user < 2) { } else { ?>
           <li class="nav-item">            
             <a href="<?=site_url('anggota')?>" class="nav-link <?=$this->uri->segment(1) == 'anggota' ? "active" : ""?>">
             <i class="nav-icon fas fa-leaf"></i><p>Anggota</p></a>
           </li>
           <?php } ?>
-          <li class="nav-item">            
-            <a href="<?=site_url('lahan')?>" class="nav-link <?=$this->uri->segment(1) == 'lahan' ? "active" : ""?>">
-            <i class="nav-icon fas fa-leaf"></i><p>Lahan</p></a>
-          </li>
           <li class="nav-item">            
             <a href="<?=site_url('video')?>" class="nav-link <?=$this->uri->segment(1) == 'video' ? "active" : ""?>">
             <i class="nav-icon fas fa-video"></i><p>Video</p></a>
@@ -119,11 +113,7 @@
           <li class="nav-item">            
             <a href="<?=site_url('info')?>" class="nav-link <?=$this->uri->segment(1) == 'info' ? "active" : ""?>">
             <i class="nav-icon fas fa-question"></i><p>Info</p></a>
-          </li>
-          <li class="nav-item">            
-            <a href="<?=site_url('donasi')?>" class="nav-link <?=$this->uri->segment(1) == 'donasi' ? "active" : ""?>">
-            <i class="nav-icon fas fa-heart"></i><p>Gotong Royong</p></a>
-          </li>
+          </li>          
           <?php if ($this->session->tipe_user < 3) { } else { ?>
           <li class="nav-item">            
             <a href="<?=site_url('statistik')?>" class="nav-link <?=$this->uri->segment(1) == 'statistik' ? "active" : ""?>">
@@ -173,7 +163,7 @@
     </div>
   </footer>
 
-  <footer class="main-footer text-center bg-success d-lg-none">
+  <footer class="main-footer text-center bg-primary d-lg-none">
     <div class="row text-white">
       <div class="col"><a class="text-white" href="<?= base_url('modul')?>"><i class="fas fa-book-reader"></i></a></div>
       <div class="col"><a class="text-white" href="<?= base_url('video')?>"><i class="fas fa-video"></i></a></div>
@@ -207,36 +197,11 @@
 <!-- PAGE SCRIPTS -->
 <script src="<?=base_url()?>/assets/dist/js/pages/dashboard2.js"></script>
 
-<?php
-  if ($this->uri->segment(1)=="profil" and $this->uri->segment(2)=="edit") {
-    $this->load->view("script/profil_edit");
-  } elseif ($this->uri->segment(1)=="video" and $this->uri->segment(2)=="edit" or $this->uri->segment(1)=="video" and $this->uri->segment(2)=="tambah") {
-    $this->load->view("script/summernote-footer");
-  } elseif ($this->uri->segment(1)=="modul" and $this->uri->segment(2)=="edit" or $this->uri->segment(1)=="modul" and $this->uri->segment(2)=="tambah") {
-    $this->load->view("script/summernote-footer");
-  } elseif ($this->uri->segment(1)=="info" and $this->uri->segment(2)=="edit" or $this->uri->segment(1)=="info" and $this->uri->segment(2)=="tambah") {
-    $this->load->view("script/summernote-footer");
-  } elseif ($this->uri->segment(1)=="kelompok" and $this->uri->segment(2)== null) {
-    $this->load->view("script/datatables-footer");
-    $this->load->view("script/datatables-kelompok");
-  } elseif ($this->uri->segment(1)=="kelompok" and $this->uri->segment(2)== "anggota") {
-    $this->load->view("script/datatables-footer");
-    $this->load->view("script/datatables-kelompok");
-  } elseif ($this->uri->segment(1)=="anggota") {
-    $this->load->view("script/datatables-footer");
-    $this->load->view("script/datatables-anggota");
-  } elseif ($this->uri->segment(1)=="kelompok" and $this->uri->segment(2)=="edit" or $this->uri->segment(1)=="kelompok" and $this->uri->segment(2)=="tambah") {
-    $this->load->view("script/pilihan_wilayah");
-    $this->load->view("script/pilihan_kelompok");
-  } elseif ($this->uri->segment(1)=="donasi" and $this->uri->segment(2)=="admin") {
-    $this->load->view("script/datatables-footer");
-    $this->load->view("script/datatables-donasi");
-  } elseif ($this->uri->segment(1)=="statistik" and $this->uri->segment(2)==null) {
-    $this->load->view("script/chart-admin");
-  } elseif ($this->uri->segment(1)=="statistik" and $this->uri->segment(2)=="lahan") {
-    $this->load->view("script/chart-lahan");
-  }
-?>
+<?php 
+    if (isset($footer_script)) {
+      $this->load->view("script/".$footer_script);
+    }
+  ?>
 
 </body>
 </html>

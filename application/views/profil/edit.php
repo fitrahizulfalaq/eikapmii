@@ -16,6 +16,17 @@
         <?= form_open_multipart('')?>
           <div class="card-body">
             <div class="form-group">
+              <label>Email</label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" value="<?= $this->input->post('email') ?? $row->email ?>" readonly required>
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>
+              </div>                                                  
+            </div>
+            <div class="form-group">
               <label>Username</label>
               <div class="input-group mb-3">
                 <input type="hidden" name="id" required="" value="<?= $this->input->post('id') ?? $row->id ?>">
@@ -56,7 +67,41 @@
               <label>Tanggal lahir</label>
               <div class="input-group mb-3">
                 <div class="input-group-append"><div class="input-group-text"><span><i class="fas fa-building"></i></span></div></div>
-                <input type="date" class="form-control" name="tgl_lahir" placeholder="Ex: 09/01/1998" value="<?= $row->tgl_lahir?>" required>
+                <select class="form-control" name="tanggal" required="">
+                    <option value="">Tanggal</option>
+                    <?php
+                        for ($i=1; $i<=31 ; $i++) {
+                    ?>
+                      <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                    <?php
+                        }
+                    ?>
+                </select>
+                <select class="form-control" name="bulan" required="">
+                    <option value="">Bulan</option>
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Maret</option>
+                    <option value="4">April</option>
+                    <option value="5">Mei</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">Agustus</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+                <select class="form-control" name="tahun" required="">
+                    <option value="">Tahun</option>
+                    <?php
+                        for ($i=1960; $i<=date('Y')-23 ; $i++) {
+                    ?>
+                      <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                    <?php
+                        }
+                    ?>
+                </select>
               </div>                            
               <?php echo form_error('tgl_lahir')?>                        
             </div>
@@ -76,19 +121,6 @@
                 <input type="number" class="form-control" name="hp" placeholder="Ex: 85231519519" value="<?= $row->hp?>" minlength="11" maxlenght="50" required>
               </div>                            
               <?php echo form_error('hp')?>                        
-            </div>
-            <div class="form-group">
-              <label>Agama</label>
-              <select name="agama" class="form-control" required>
-                <option value="<?= $row->agama ?>">Pilih : <?= $row->agama ?></option>
-                <option value="Islam"> Islam </option>
-                <option value="Budha"> Budha </option>
-                <option value="Hindu"> Hindu </option>
-                <option value="Kristen"> Kristen </option>
-                <option value="Protestan"> Protestan </option>
-                <option value="Konghucu"> Konghucu </option>
-              </select>
-              <?php echo form_error('agama')?>
             </div>
             <div class="form-group">
               <label>Provinsi</label>
@@ -170,37 +202,39 @@
               <?php echo form_error('pekerjaan_utama')?>
             </div>
             <div class="form-group">
-              <label>Kategori Keanggotaan</label>
-              <select name="keanggotaan" class="form-control" required>
-                <option value="<?= $row->keanggotaan ?>">Pilih : <?= $this->fungsi->get_deskripsi("tb_kategori_keanggotaan",$row->keanggotaan) ?></option>
-                <?php
-                  foreach ($this->fungsi->pilihan("tb_kategori_keanggotaan")->result() as $key => $pilihan) {;
-                ?>
-                <option value="<?= $pilihan->id?>"><?= $pilihan->deskripsi?></option>
-                <?php }?>
-              </select>
-              <?php echo form_error('keanggotaan')?>
+              <label>Angkatan</label>
+              <div class="input-group mb-3">
+                <div class="input-group-append"><div class="input-group-text"><span class="fas fa-calendar"></span></div></div>
+                <select class="form-control" name="angkatan" required="">
+                    <option value="<?= $row->angkatan?>">Pilihan : <?= $row->angkatan?></option>
+                    <?php
+                        for ($i=1960; $i<=date('Y')-6 ; $i++) {
+                    ?>
+                      <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                    <?php
+                        }
+                    ?>
+                </select>
+              </div>                            
+              <?php echo form_error('angkatan')?>                        
             </div>
             <div class="form-group">
               <label>Tahun Bergabung</label>
               <div class="input-group mb-3">
                 <div class="input-group-append"><div class="input-group-text"><span class="fas fa-calendar"></span></div></div>
-                <input type="number" class="form-control" name="tahun_bergabung" placeholder="Ex: 2019" value="<?= $row->tahun_bergabung?>" minlength="4" maxlenght="4" required>
+                <select class="form-control" name="tahun_bergabung" required="">
+                    <option value="<?= $row->tahun_bergabung?>">Pilihan : <?= $row->tahun_bergabung?></option>
+                    <?php
+                        for ($i=1960; $i<=date('Y')-6 ; $i++) {
+                    ?>
+                      <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                    <?php
+                        }
+                    ?>
+                </select>
               </div>                            
               <?php echo form_error('tahun_bergabung')?>                        
             </div>
-            <div class="form-group">
-              <label>Alasan bergabung</label>
-              <select name="alasan" class="form-control" required>
-                <option value="<?= $row->alasan ?>">Pilih : <?= $this->fungsi->get_deskripsi("tb_alasan",$row->alasan) ?></option>
-                <?php
-                  foreach ($this->fungsi->pilihan("tb_alasan")->result() as $key => $pilihan) {;
-                ?>
-                <option value="<?= $pilihan->id?>"><?= $pilihan->deskripsi?></option>
-                <?php }?>
-              </select>
-              <?php echo form_error('alasan')?>
-            </div>                                    
             <?php if($row->foto != null) {?>
             <div>
               <img src="<?=base_url('assets/dist/img/foto-user/'.$row->foto)?>" style="width: 10%"><br>

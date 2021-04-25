@@ -28,6 +28,10 @@ class Auth extends CI_Controller {
 				$params = array (
 					'id' => $row->id,					
 					'username' => $row->username,					
+					'nama' => $row->nama,					
+					'komisariat_id' => $row->komisariat_id,					
+					'rayon_id' => $row->rayon_id,					
+					'email' => $row->email,					
 					'tipe_user' => $row->tipe_user,
 					'date_now' => date('Y:m:d H:i:s'),
 				);				

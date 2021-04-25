@@ -84,6 +84,17 @@ class Fungsi {
 		return $query;
 	}
 
+	function checkActive($id)
+	{
+		$this->ci->db->from('tb_user');
+		$this->ci->db->where('id',$id);
+		$status = $this->ci->db->get()->row("status");
+		if ($status == "2") {
+			$this->ci->session->set_flashdata('warning','Status anda belum aktif, lengkapi profil terlebih dahulu');
+			redirect('profil/edit/'.$id);
+		}
+	}
+
 }
 
 ?>

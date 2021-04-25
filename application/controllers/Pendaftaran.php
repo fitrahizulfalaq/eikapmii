@@ -54,14 +54,14 @@ class Pendaftaran extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<span class="badge badge-danger">', '</span>');
 
 		if ($this->form_validation->run() == FALSE) {
-			$data['menu'] = "Jadi Anggota API";
+			$data['menu'] = "Pendataan IKA-PMII Kota Malang";
 			$this->templateadmin->load('template/umum','pendaftaran/tambah',$data);
 	    } else {
 	        $post = $this->input->post(null, TRUE);	        
-	        $this->pendaftaran_m->simpan($post);
+	        $this->pendaftaran_m->simpan_langsung($post);
 
 	        if ($this->db->affected_rows() > 0) {
-	        	$this->session->set_flashdata('success','Pendaftaran Berhasil, Silahkan Hubungi Admin untuk ACC');
+	        	$this->session->set_flashdata('success','Pendaftaran Berhasil, lengkapi profil setelah login menggunakan email yang telah anda daftarkan');
 	        }	
 	        redirect('pendaftaran/tambah');	        	
 	    }

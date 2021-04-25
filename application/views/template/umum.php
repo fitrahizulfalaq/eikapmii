@@ -22,7 +22,7 @@
 <body class="hold-transition layout-top-nav layout-footer-fixed">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-green navbar-dark">
+  <nav class="main-header navbar navbar-expand navbar-primary navbar-dark">
     <ul class="navbar-nav">
       <li class="nav-item">
         <div class="image">
@@ -33,7 +33,7 @@
   </nav>
   <!-- /.navbar -->
 
-  <div class="content-wrapper" style="background-image: url(<?= base_url('/assets/dist/img/tiles-transparan.jpg')?>); background-repeat: repeat; background-attachment: fixed;">
+  <div class="content-wrapper" style="background-image: url(<?= base_url('/assets/dist/img/tiles-transparan.jpg')?>); background-repeat: no-repeat; background-size: cover;  background-position: center;">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container">
@@ -67,7 +67,7 @@
     </div>
   </footer>
 
-  <footer class="main-footer text-center bg-success d-lg-none">
+  <footer class="main-footer text-center bg-primary d-lg-none">
     <div class="row text-white">
       <div class="col"><a class="text-white" href="<?= base_url('profil')?>"><i class="fas fa-user-cog"></i></a></div>
       <div class="col"><a class="text-white" href="<?= base_url('')?>"><i class="fas fa-home"></i></a></div>

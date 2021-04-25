@@ -13,6 +13,7 @@ class Profil extends CI_Controller {
 	{
 		$previllage	= 1;
 		check_super_user($this->session->tipe_user,$previllage);
+		$this->fungsi->checkActive($this->session->id);
 
 		$id = $this->session->id;
 	    $query = $this->user_m->get($id);
@@ -53,7 +54,8 @@ class Profil extends CI_Controller {
 			$query = $this->user_m->get($id);
 			if ($query->num_rows() > 0) {
 				$data['row'] = $query->row();
-			$data['menu'] = "Edit Data User";			
+				$data['menu'] = "Edit Data User";			
+				$data['footer_script'] = "profil_edit";			
 				$this->templateadmin->load('template/dashboard','profil/edit',$data);
 			} else {
 				echo "<script>alert('Data Tidak Ditemukan');</script>";

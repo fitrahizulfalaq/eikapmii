@@ -12,9 +12,11 @@
           var html = '';
                 var i;
                 for(i=0; i<data.length; i++){
-                    html += '<option value="'+data[i].id_kelompok+'">'+data[i].name+'</option>';
+                    html += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
                 }
                 $('#kota').html(html);         
+                $('#kecamatan').val("");         
+                $('#kelurahan').val("");         
         }
       });
     });

@@ -10,7 +10,9 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$data['menu'] = "Dashboard E-Petani";
+		$this->fungsi->checkActive($this->session->id);
+
+		$data['menu'] = "Menu E-IKAPMII Kota Malang";
 		$this->templateadmin->load('template/dashboard','page/beranda',$data);
 	}
 }

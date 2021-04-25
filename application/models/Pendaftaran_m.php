@@ -42,6 +42,23 @@ class Pendaftaran_m extends CI_Model {
 	  $this->db->insert('tb_user_tmp',$params);
 	}
 
+	function simpan_langsung($post)
+	{
+	  $params['id'] =  "";
+	  $params['username'] =  $post['username'];
+	  $params['password'] =  sha1($post['password']);
+	  $params['nama'] =  $post['nama'];
+	  $params['komisariat_id'] =  $post['komisariat_id'];
+	  $params['rayon_id'] =  $post['rayon_id'];
+	  $params['hp'] =  $post['hp'];
+	  $params['email'] =  $post['email'];
+	  $params['angkatan'] =  $post['angkatan'];
+	  $params['tipe_user'] =  "1";
+	  $params['created'] =  date("Y:m:d:h:i:sa");
+	  $this->db->insert('tb_user',$params);
+
+	}
+
 	function hapus($id){
 	  $this->db->where('id', $id);
 	  $this->db->delete('tb_user_tmp');

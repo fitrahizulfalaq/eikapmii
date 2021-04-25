@@ -19,7 +19,7 @@
             </div>
 
             <h3 class="profile-username text-center"><?=$row->nama?></h3>
-            <p class="text-muted text-center"><?= ucfirst($this->fungsi->pilihan("tb_tipe_user",$this->session->tipe_user)->row("deskripsi"))?> / <?= $this->fungsi->get_deskripsi_advanced("tb_kelompok","id",$row->id_kelompok,"nama")?></p>
+            <p class="text-muted text-center"><?= ucfirst($this->fungsi->pilihan("tb_tipe_user",$this->session->tipe_user)->row("deskripsi"))?> / <?= $this->fungsi->get_deskripsi("tb_komisariat",$row->komisariat_id)?></p>
             <!-- Biodata Diri -->
             <h5>Biodata Diri</h5>
             <ul class="list-group list-group-unbordered mb-3">
@@ -28,9 +28,6 @@
               </li>
               <li class="list-group-item">
                 <b>TTL</b> <a class="float-right"><?=$row->tempat_lahir?>, <?= date('d-m-Y',strtotime($row->tgl_lahir))?></a>
-              </li>
-              <li class="list-group-item">
-                <b>Agama</b> <a class="float-right"><?=$row->agama?></a>
               </li>
               <li class="list-group-item">
                 <b>Kelamin</b> <a class="float-right"><?= $row->kelamin ?></a>
@@ -58,16 +55,10 @@
                 <b>Pekerjaan Utama</b> <a class="float-right"><?= $this->fungsi->get_deskripsi("tb_pekerjaan",$row->pekerjaan_utama)?></a>
               </li>
               <li class="list-group-item">
-                <b>Keanggotaan</b> <a class="float-right"><?= $this->fungsi->get_deskripsi("tb_kategori_keanggotaan",$row->keanggotaan)?></a>
-              </li>
-              <li class="list-group-item">
                 <b>Tahun Bergabung</b> <a class="float-right"><?= $row->tahun_bergabung?></a>
               </li>
               <li class="list-group-item">
-                <b>Alasan</b> <a class="float-right"><?= $this->fungsi->get_deskripsi("tb_alasan",$row->alasan)?></a>
-              </li>
-              <li class="list-group-item">
-                <b>Diajukan tanggal</b> <a class="float-right"><?= date('d - m - Y',strtotime($row->created))?></a>
+                <b>Bergabung sejak</b> <a class="float-right"><?= date('d - m - Y',strtotime($row->created))?></a>
               </li>                                         
             </ul>
             <!-- End Biodata Diri -->

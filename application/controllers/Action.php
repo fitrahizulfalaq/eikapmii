@@ -22,9 +22,9 @@ class Action extends CI_Controller {
       echo json_encode($data);
   }
 
-  function get_kelompok(){
+  function getRayon(){
       $id=$this->input->post('id');
-      $data=$this->db->query("SELECT * FROM tb_kelompok WHERE kategori_kelompok='$id'")->result();
+      $data=$this->db->query("SELECT * FROM tb_rayon WHERE komisariat_id='$id'")->result();
       echo json_encode($data);
   }
 
