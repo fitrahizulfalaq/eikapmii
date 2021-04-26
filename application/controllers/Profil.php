@@ -31,7 +31,7 @@ class Profil extends CI_Controller {
 
 	{			
 		//Mencegah user yang bukan haknya
-		check_right_user($this->session->id,$this->uri->segment(3));
+		isRightUser($this->session->id,$this->uri->segment(3));
 		//Load librarynya dulu
 		$this->load->library('form_validation');
 		//Atur validasinya
@@ -99,7 +99,7 @@ class Profil extends CI_Controller {
 
 	function hapusfoto(){
     //Mencegah user yang bukan haknya
-		check_right_user($this->session->id,$this->uri->segment(3));
+		isRightUser($this->session->id,$this->uri->segment(3));
 
 	  $id = $this->uri->segment(3);
 

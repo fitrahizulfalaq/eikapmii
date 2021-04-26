@@ -16,7 +16,7 @@
             <br>
             <div class="text-justify">
               <h4>
-                E-PETANI merupakan gerakan yang dipelopori oleh Aliansi Petani Indonesia dalam rangka untuk menghimpun data dan mempersatukan seluruh petani yang ada di Indonesia. Dalam aplikasi ini, petani dapat mempelajari edukasi berupa video, modul, serta dapat berbagi antar sesama. 
+                E-IKAPMII merupakan platform yang berfungsi untuk mendata alumni PMII yang telah berjuang di PMII. 
               </h4>
             </div>
 

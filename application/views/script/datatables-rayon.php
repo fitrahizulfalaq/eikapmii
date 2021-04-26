@@ -13,3 +13,26 @@
 <script src="<?=base_url()?>/assets/plugins/datatables-select/js/dataTables.select.min.js"></script>
 <script src="<?=base_url()?>/assets/plugins/datatables-select/js/select.bootstrap4.min.js"></script>
 
+<script type="text/javascript">
+  var table;
+  $(document).ready(function() {
+      //datatables
+      table = $('#table').DataTable({ 
+          "processing": true, 
+          "serverSide": true, 
+          "order": [], 
+           
+          "ajax": {
+              "url": "<?php echo site_url('rayon/get_data_rayon')?>",
+              "type": "POST"
+          },
+          "columnDefs": [
+          { 
+              "targets": [ 0 ], 
+              "orderable": false, 
+          },
+          ],
+      });
+  });
+</script>
+

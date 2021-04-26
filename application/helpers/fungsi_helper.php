@@ -22,8 +22,14 @@ function check_super_user($tipe_user, $previllage) {
 	}
 }
 
-function check_right_user($id_login, $user_id) {	
-	if ($id_login < $user_id) {
+function check_right_user($user_id, $item_id, $tipe_user, $previllage) {	
+	if ($user_id != $item_id && $tipe_user < $previllage) {
+		redirect('dashboard');
+	}
+}
+
+function isRightUser($user_id, $item_id) {	
+	if ($user_id != $item_id) {
 		redirect('dashboard');
 	}
 }

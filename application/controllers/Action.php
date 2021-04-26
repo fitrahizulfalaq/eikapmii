@@ -22,6 +22,12 @@ class Action extends CI_Controller {
       echo json_encode($data);
   }
 
+  function getAllKomisariat(){
+      $id=$this->input->post('id');
+      $data=$this->db->query("SELECT * FROM tb_komisariat")->result();
+      echo json_encode($data);
+  }
+
   function getRayon(){
       $id=$this->input->post('id');
       $data=$this->db->query("SELECT * FROM tb_rayon WHERE komisariat_id='$id'")->result();

@@ -86,13 +86,13 @@
             <a href="<?=site_url('profil')?>" class="nav-link <?=$this->uri->segment(1) == 'profil' ? "active" : ""?>">
             <i class="nav-icon fas fa-leaf"></i><p>Profil</p></a>
           </li>
-          <?php if ($this->session->tipe_user < 3) { } else { ?>
+          <?php if ($this->session->tipe_user < 4) { } else { ?>
           <li class="nav-item">            
-            <a href="<?=site_url('kelompok')?>" class="nav-link <?=$this->uri->segment(1) == 'kelompok' ? "active" : ""?>">
+            <a href="<?=site_url('komisariat')?>" class="nav-link <?=$this->uri->segment(1) == 'komisariat' ? "active" : ""?>">
             <i class="nav-icon fas fa-leaf"></i><p>Komisariat</p></a>
           </li>
           <li class="nav-item">            
-            <a href="<?=site_url('anggota')?>" class="nav-link <?=$this->uri->segment(1) == 'anggota' ? "active" : ""?>">
+            <a href="<?=site_url('rayon')?>" class="nav-link <?=$this->uri->segment(1) == 'rayon' ? "active" : ""?>">
             <i class="nav-icon fas fa-leaf"></i><p>Rayon</p></a>
           </li>
           <?php } ?>

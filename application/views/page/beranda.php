@@ -16,31 +16,17 @@
           </a>
         </div>
       </div>
+      <?php if ($this->session->tipe_user < 4) { } else { ?>
       <!-- Menu-->
       <div class="col-lg-2 col-4">        
         <!-- small card -->
         <div class="small-box bg-white">
           <div class="inner text-center">
-            <a href="<?= base_url('lahan')?>">
-            <img src="<?= base_url("")?>/assets/dist/img/lahan.png" alt="" width="100%">
-            </a>
-          </div>          
-          <a href="<?= base_url('lahan')?>" class="small-box-footer">
-            Lahan
-          </a>
-        </div>
-      </div>
-      <?php if ($this->session->tipe_user < 2) { } else { ?>
-      <!-- Menu-->
-      <div class="col-lg-2 col-4">        
-        <!-- small card -->
-        <div class="small-box bg-white">
-          <div class="inner text-center">
-            <a href="<?= base_url('kelompok')?>">
+            <a href="<?= base_url('komisariat')?>">
             <img src="<?= base_url("")?>/assets/dist/img/kelompok.png" alt="" width="100%">
             </a>
           </div>          
-          <a href="<?= base_url('kelompok')?>" class="small-box-footer">
+          <a href="<?= base_url('komisariat')?>" class="small-box-footer">
             Kelompok
           </a>
         </div>
@@ -85,20 +71,6 @@
           </div>          
           <a href="<?= base_url('info')?>" class="small-box-footer">
             Info
-          </a>
-        </div>
-      </div>
-      <!-- Menu-->
-      <div class="col-lg-2 col-4">        
-        <!-- small card -->
-        <div class="small-box bg-white">
-          <div class="inner text-center">
-            <a href="<?= base_url('donasi')?>">
-            <img src="<?= base_url("")?>/assets/dist/img/donasi.png" alt="" width="100%">
-            </a>
-          </div>          
-          <a href="<?= base_url('donasi')?>" class="small-box-footer">
-            Donasi
           </a>
         </div>
       </div>
@@ -148,22 +120,6 @@
           </a>
         </div>
       </div>
-      <?php if ($this->session->tipe_user < 2) { } else { ?>
-      <!-- Menu-->
-      <div class="col-lg-2 col-4">        
-        <!-- small card -->
-        <div class="small-box bg-white">
-          <div class="inner text-center">
-            <a href="<?= base_url('pendaftaran')?>">
-            <img src="<?= base_url("")?>/assets/dist/img/pendaftaran.png" alt="" width="100%">
-            </a>
-          </div>          
-          <a href="<?= base_url('pendaftaran')?>" class="small-box-footer">
-            Pendaftaran
-          </a>
-        </div>
-      </div>    
-      <?php } ?>
     </div>
     <!-- /.row -->
   </div>
