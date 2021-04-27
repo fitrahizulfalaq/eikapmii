@@ -34,4 +34,9 @@ function isRightUser($user_id, $item_id) {
 	}
 }
 
+function test($var) {
+	var_dump($var);
+	die();
+}
+
 ?>

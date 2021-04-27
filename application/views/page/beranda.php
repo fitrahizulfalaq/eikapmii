@@ -27,10 +27,40 @@
             </a>
           </div>          
           <a href="<?= base_url('komisariat')?>" class="small-box-footer">
-            Kelompok
+            Komisariat
+          </a>
+        </div>
+      </div>
+      <!-- Menu-->
+      <div class="col-lg-2 col-4">        
+        <!-- small card -->
+        <div class="small-box bg-white">
+          <div class="inner text-center">
+            <a href="<?= base_url('rayon')?>">
+            <img src="<?= base_url("")?>/assets/dist/img/kelompok.png" alt="" width="100%">
+            </a>
+          </div>          
+          <a href="<?= base_url('rayon')?>" class="small-box-footer">
+            Rayon
           </a>
         </div>
       </div>    
+      <?php } ?>
+      <?php if ($this->session->tipe_user < 2) { } else { ?>
+        <!-- Menu-->
+      <div class="col-lg-2 col-4">        
+        <!-- small card -->
+        <div class="small-box bg-white">
+          <div class="inner text-center">
+            <a href="<?= base_url('anggota')?>">
+            <img src="<?= base_url("")?>/assets/dist/img/pendaftaran.png" alt="" width="100%">
+            </a>
+          </div>          
+          <a href="<?= base_url('anggota')?>" class="small-box-footer">
+            Anggota
+          </a>
+        </div>
+      </div>
       <?php } ?>
       <!-- Menu-->
       <div class="col-lg-2 col-4">        
