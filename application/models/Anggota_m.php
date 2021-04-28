@@ -97,18 +97,77 @@ class Anggota_m extends CI_Model {
 	
 	function simpan($post)
 	{
-	  $params['id'] =  "";
-	  $params['deskripsi'] =  $post['deskripsi'];	  
-	  $params['created'] =  date("Y:m:d:h:i:sa");
+	  //Id    
+    $params['id'] =  "";
+    $params['komisariat_id'] =  $post['komisariat_id'];
+    $params['rayon_id'] =  $post['rayon_id'];
+    $params['username'] =  $post['username'];
+    $params['password'] =  sha1($post['password']);     
+    $params['nama'] =  $post['nama'];
+    $params['tempat_lahir'] =  $post['tempat_lahir'];
+    $tanggal =  $post['tanggal'];
+    $bulan =  $post['bulan'];
+    $tahun =  $post['tahun'];
+    $params['tgl_lahir'] =  date("Y:m:d", strtotime($tahun."-".$bulan."-".$tanggal));
+    $params['hp'] =  $post['hp'];
+    $params['email'] =  $post['email'];
+    $params['kelamin'] =  $post['kelamin'];
+    $params['provinsi'] =  $post['provinsi'];
+    $params['kota'] =  $post['kota'];
+    $params['kecamatan'] =  $post['kecamatan'];
+    $params['kelurahan'] =  $post['kelurahan'];
+    $params['domisili'] =  $post['domisili'];
+    $params['pernikahan'] =  $post['pernikahan'];
+    $params['pendidikan_terakhir'] =  $post['pendidikan_terakhir'];
+    $params['pekerjaan_utama'] =  $post['pekerjaan_utama'];
+    $params['angkatan'] =  $post['angkatan'];
+    $params['tahun_bergabung'] =  $post['tahun_bergabung'];
+    $params['status'] =  "1";
+    if ($post['foto'] != null) {
+      $params['foto'] =  $post['foto'];
+    } else {
+      $params['foto'] =  null;
+    }
+    $params['tipe_user'] =  "1";
+    $params['created'] =  date("Y:m:d:h:m:sa");
 
 	  $this->db->insert('tb_user',$params);
 	}
 
   function update($post)
   {
+    //Id    
     $params['id'] =  $post['id'];
-    $params['deskripsi'] =  $post['deskripsi'];   
-    $params['created'] =  date("Y:m:d:h:i:sa");
+    // Kebutuhan User
+    $params['username'] =  $post['username'];
+    if ($post['password'] != null) {
+      $params['password'] =  sha1($post['password']);     
+    }
+    $params['nama'] =  $post['nama'];
+    $params['tempat_lahir'] =  $post['tempat_lahir'];
+    $tanggal =  $post['tanggal'];
+    $bulan =  $post['bulan'];
+    $tahun =  $post['tahun'];
+    $params['tgl_lahir'] =  date("Y:m:d", strtotime($tahun."-".$bulan."-".$tanggal));
+    $params['hp'] =  $post['hp'];
+    $params['kelamin'] =  $post['kelamin'];
+    $params['provinsi'] =  $post['provinsi'];
+    $params['kota'] =  $post['kota'];
+    $params['kecamatan'] =  $post['kecamatan'];
+    $params['kelurahan'] =  $post['kelurahan'];
+    $params['domisili'] =  $post['domisili'];
+    $params['pernikahan'] =  $post['pernikahan'];
+    $params['pendidikan_terakhir'] =  $post['pendidikan_terakhir'];
+    $params['pekerjaan_utama'] =  $post['pekerjaan_utama'];
+    $params['angkatan'] =  $post['angkatan'];
+    $params['tahun_bergabung'] =  $post['tahun_bergabung'];
+    $params['status'] =  "1";
+    if ($post['foto'] != null) {
+      $params['foto'] =  $post['foto'];
+    } else {
+      $params['foto'] =  "";
+    }
+    
 
     $this->db->where('id',$params['id']);
     $this->db->update('tb_user',$params);

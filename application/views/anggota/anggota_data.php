@@ -5,7 +5,7 @@
     <div class="col-12">     
       <?php $this->view('message'); ?>
       <div class="card-header">          
-        <a href="<?=site_url('komisariat/tambah/')?>" class="btn btn-success btn-sm"><i class='fas fa-plus'></i> Tambah</a>
+        <a href="<?=site_url('anggota/tambah/')?>" class="btn btn-success btn-sm"><i class='fas fa-plus'></i> Tambah</a>
         <a href="<?=base_url("");?>" class="btn btn-info float-right btn-sm"><i class="fas fa-backward"></i> Kembali</a>
       </div>
       <div class="card">

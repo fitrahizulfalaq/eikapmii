@@ -68,7 +68,7 @@
               <div class="input-group mb-3">
                 <div class="input-group-append"><div class="input-group-text"><span><i class="fas fa-building"></i></span></div></div>
                 <select class="form-control" name="tanggal" required="">
-                    <option value="">Tanggal</option>
+                    <option value="<?= date("d",strtotime($row->tgl_lahir))?>">Tanggal : <?= date("d",strtotime($row->tgl_lahir))?></option>
                     <?php
                         for ($i=1; $i<=31 ; $i++) {
                     ?>
@@ -78,7 +78,7 @@
                     ?>
                 </select>
                 <select class="form-control" name="bulan" required="">
-                    <option value="">Bulan</option>
+                    <option value="<?= date("m",strtotime($row->tgl_lahir))?>">Bulan : <?= date("m",strtotime($row->tgl_lahir))?></option>
                     <option value="1">Januari</option>
                     <option value="2">Februari</option>
                     <option value="3">Maret</option>
@@ -93,7 +93,7 @@
                     <option value="12">Desember</option>
                 </select>
                 <select class="form-control" name="tahun" required="">
-                    <option value="">Tahun</option>
+                    <option value="<?= date("Y",strtotime($row->tgl_lahir))?>">Tahun : <?= date("Y",strtotime($row->tgl_lahir))?></option>
                     <?php
                         for ($i=1960; $i<=date('Y')-23 ; $i++) {
                     ?>

@@ -6,6 +6,7 @@ class Anggota extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('anggota_m');
+        $this->load->model('user_m');
     }
  
     function index(){
@@ -71,12 +72,16 @@ class Anggota extends CI_Controller {
     // FORM EKSEKUSI
     public function tambah()
     {   
+        //Mencegah user yang bukan haknya
+        $previllage = 2;
+        check_super_user($this->session->tipe_user,$previllage);
+
         //Load librarynya dulu
         $this->load->library('form_validation');
         //Atur validasinya
-        $this->form_validation->set_rules('nama', 'nama', 'min_length[3]|is_unique[tb_anggota.nama]|is_unique[tb_anggota.nama]|max_length[100]');
-        $this->form_validation->set_rules('email', 'email', 'min_length[3]|is_unique[tb_anggota.email]|is_unique[tb_anggota.email]');
-        $this->form_validation->set_rules('kontak', 'kontak', 'min_length[3]|is_unique[tb_anggota.kontak]|is_unique[tb_anggota.kontak]|max_length[15]|alpha_dash');
+        $this->form_validation->set_rules('nama', 'nama', 'min_length[3]|is_unique[tb_user.nama]|is_unique[tb_user.nama]|max_length[100]');
+        $this->form_validation->set_rules('email', 'email', 'min_length[3]|is_unique[tb_user.email]|is_unique[tb_user.email]');
+        $this->form_validation->set_rules('kontak', 'kontak', 'min_length[3]|is_unique[tb_user.kontak]|is_unique[tb_user.kontak]|max_length[15]|alpha_dash');
 
         //Pesan yang ditampilkan
         $this->form_validation->set_message('min_length', '{field} Setidaknya  minimal {param} karakter.');
@@ -88,11 +93,28 @@ class Anggota extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $data['menu'] = "Tambah Data anggota";
+            $data['footer_script'] = "anggota-tambah";
             $this->templateadmin->load('template/dashboard','anggota/tambah',$data);
         } else {
-            $post = $this->input->post(null, TRUE);         
-            $this->anggota_m->simpan($post);
+            $post = $this->input->post(null, TRUE);
+            //CEK GAMBAR
+            $config['upload_path']          = 'assets/dist/img/foto-user/';
+            $config['allowed_types']        = 'jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['file_name']            = strtoupper($post['username']).'--'.$post['hp'];
 
+            $this->load->library('upload', $config);
+            if (@$_FILES['foto']['name'] != null) {
+                if ($this->upload->do_upload('foto')) {
+                    $post['foto'] = $this->upload->data('file_name');                   
+                } else {
+                    $pesan = $this->upload->display_errors();
+                    $this->session->set_flashdata('danger',$pesan);
+                    redirect('anggota/tambah');
+                }           
+            }
+
+            $this->anggota_m->simpan($post);
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('success','Data anggota Berhasil Ditambahkan');
             }   
@@ -102,12 +124,17 @@ class Anggota extends CI_Controller {
 
     public function edit($id)
     {           
+        //Mencegah user yang bukan haknya
+        $previllage = 2;
+        check_super_user($this->session->tipe_user,$previllage);
+        check_right_user($this->session->komisariat_id, $this->fungsi->pilihan("tb_user",$id)->row("komisariat_id"),$this->session->tipe_user,$previllage);
+
         //Load librarynya dulu
         $this->load->library('form_validation');
         //Atur validasinya
         $this->form_validation->set_rules('nama', 'nama', 'min_length[3]|max_length[100]');
         $this->form_validation->set_rules('email', 'email', 'min_length[3]');
-        $this->form_validation->set_rules('kontak', 'kontak', 'min_length[3]|is_unique[tb_anggota.kontak]|is_unique[tb_anggota.kontak]|max_length[15]|alpha_dash');
+        $this->form_validation->set_rules('kontak', 'kontak', 'min_length[3]|is_unique[tb_user.kontak]|is_unique[tb_user.kontak]|max_length[15]|alpha_dash');
 
         //Pesan yang ditampilkan
         $this->form_validation->set_message('min_length', '{field} Setidaknya  minimal {param} karakter.');
@@ -129,23 +156,70 @@ class Anggota extends CI_Controller {
             }
 
         } else {
-          $post = $this->input->post(null, TRUE);
-          $this->anggota_m->update($post);
-            if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('success','Berhasil Di Edit');
-            }           
-            redirect('anggota');
+            $post = $this->input->post(null, TRUE);
+            //CEK GAMBAR
+            $config['upload_path']          = 'assets/dist/img/foto-user/';
+            $config['allowed_types']        = 'jpg|png|jpeg';
+            $config['max_size']             = 1000;
+            $config['file_name']            = strtoupper($post['username']).'--'.$post['hp'];
+
+            $this->load->library('upload', $config);
+            if (@$_FILES['foto']['name'] != null) {
+                if ($this->upload->do_upload('foto')) {
+                    $itemfoto = $this->user_m->get($post['id'])->row();
+                    if ($itemfoto->foto != null) {
+                        $target_file = 'assets/dist/img/foto-user/'.$itemfoto->foto;
+                        unlink($target_file);
+                    }
+
+                    $post['foto'] = $this->upload->data('file_name');
+                } else {
+                            $pesan = $this->upload->display_errors();
+                            $this->session->set_flashdata('danger',$pesan);
+                            redirect('anggota/edit/'.$id);
+                }           
+            }
+            $this->anggota_m->update($post);
+                if ($this->db->affected_rows() > 0) {
+                    $this->session->set_flashdata('success','Berhasil Di Edit');
+                }           
+                redirect('anggota');
         }
     }
 
     function hapus(){
         //Mencegah user yang bukan haknya
-        $previllage = 4;
+        $previllage = 2;
         check_super_user($this->session->tipe_user,$previllage);
+        check_right_user($this->session->komisariat_id, $this->fungsi->pilihan("tb_user",$id)->row("komisariat_id"),$this->session->tipe_user,$previllage);
+
+
         $id = $this->uri->segment(3);        
         $this->anggota_m->hapus($id);
         $this->session->set_flashdata('danger','Berhasil Di Hapus');
         redirect('anggota');
+    }
+
+    function hapusfoto(){
+
+    //Mencegah user yang bukan haknya
+    $previllage = 2;
+    check_super_user($this->session->tipe_user,$previllage);
+    check_right_user($this->session->komisariat_id, $this->fungsi->pilihan("tb_user",$id)->row("komisariat_id"),$this->session->tipe_user,$previllage);
+
+    $id = $this->uri->segment(3);
+
+    //Action          
+    $this->load->model('user_m');
+    $itemfoto = $this->user_m->get($id)->row();
+    if ($itemfoto->foto != null) {
+        $target_file = 'assets/dist/img/foto-user/'.$itemfoto->foto;
+        unlink($target_file);
+    }
+    $params['foto'] = null;
+    $this->db->where('id',$id);
+    $this->db->update('tb_user',$params);
+    redirect('anggota/edit/'.$id);   
     }
 
 

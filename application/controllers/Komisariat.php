@@ -70,6 +70,10 @@ class Komisariat extends CI_Controller {
     // FORM EKSEKUSI
     public function tambah()
     {   
+        //Mencegah user yang bukan haknya
+        $previllage = 4;
+        check_super_user($this->fungsi->user_login()->tipe_user,$previllage);
+
         //Load librarynya dulu
         $this->load->library('form_validation');
         //Atur validasinya
@@ -101,6 +105,10 @@ class Komisariat extends CI_Controller {
 
     public function edit($id)
     {           
+        //Mencegah user yang bukan haknya
+        $previllage = 4;
+        check_super_user($this->fungsi->user_login()->tipe_user,$previllage);
+
         //Load librarynya dulu
         $this->load->library('form_validation');
         //Atur validasinya
@@ -141,6 +149,7 @@ class Komisariat extends CI_Controller {
         //Mencegah user yang bukan haknya
         $previllage = 4;
         check_super_user($this->session->tipe_user,$previllage);
+        
         $id = $this->uri->segment(3);        
         $this->komisariat_m->hapus($id);
         $this->session->set_flashdata('danger','Berhasil Di Hapus');

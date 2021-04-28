@@ -19,7 +19,7 @@
             </div>
 
             <h3 class="profile-username text-center"><?=$row->nama?></h3>
-            <p class="text-muted text-center"><?= ucfirst($this->fungsi->pilihan("tb_tipe_user",$this->session->tipe_user)->row("deskripsi"))?> / <?= $this->fungsi->get_deskripsi("tb_komisariat",$row->komisariat_id)?></p>
+            <p class="text-muted text-center"><?= ucfirst($this->fungsi->get_deskripsi("tb_tipe_user",$this->session->tipe_user))?> / <?= $this->fungsi->get_deskripsi("tb_komisariat",$row->komisariat_id)?></p>
             <!-- Biodata Diri -->
             <h5>Biodata Diri</h5>
             <ul class="list-group list-group-unbordered mb-3">
