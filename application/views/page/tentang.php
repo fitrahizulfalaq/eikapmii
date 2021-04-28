@@ -16,7 +16,7 @@
             <br>
             <div class="text-justify">
               <h4>
-                E-IKAPMII merupakan platform yang berfungsi untuk mendata alumni PMII yang telah berjuang di PMII. 
+                E-IKAPMII merupakan platform yang berfungsi untuk mendata alumni PMII yang telah berjuang di PMII. Selain itu, dalam platform ini sudah disedikan video, info, dan modul yang dapat diakses oleh seluruh alumni. 
               </h4>
             </div>
 
