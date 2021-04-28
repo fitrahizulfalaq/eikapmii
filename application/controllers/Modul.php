@@ -6,6 +6,7 @@ class Modul extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		check_not_login();
+		
 		$previllage = 1;
 		check_super_user($this->session->tipe_user,$previllage);
 		$this->load->model('modul_m');
