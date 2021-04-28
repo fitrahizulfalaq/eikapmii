@@ -46,13 +46,15 @@ class Info_m extends CI_Model {
 	  $params['id'] =  $post['id'];
 	  $params['judul'] =  ucwords($post['judul']);
 	  $params['deskripsi'] =  $post['deskripsi'];
-	  $params['file'] =  $post['file'];
+	  if (isset($post['file'])) {
+  	  	$params['file'] =  $post['file'];
+  	  }
 	  $params['user_id'] =  $this->session->id;
 	  $params['created'] =  $post['created'];
 	  
-	  if ($post['foto'] != null) {
+	  if (isset($post['foto'])) {
   	  	$params['foto'] =  $post['foto'];
-  	}
+  	  }
 
 	  $this->db->where('id',$params['id']);
 	  $this->db->update('tb_info',$params);	  	 		  	 		   			
