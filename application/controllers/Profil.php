@@ -115,4 +115,15 @@ class Profil extends CI_Controller {
     $this->db->update('tb_user',$params);
     redirect('profil/edit/'.$id);   
 	}
+
+	public function printCertificate()
+	{
+		$this->load->library("cetak");
+		$konten = "template/certificate/userCertificate";
+		$filename = "Sertifikat Keanggotaan - ".$this->session->nama;
+		$data['nama'] = $this->session->nama;
+		$data['no_anggota'] = $this->fungsi->pilihan_selected("tb_user",$this->session->id)->row("id_anggota");
+		$data['ketua'] = $this->fungsi->pilihan_advanced("setting","kode","ketua")->row("keterangan");
+		$this->cetak->userCertificate($konten,$filename,$data);
+	}
 }

@@ -117,10 +117,10 @@
             <i class="nav-icon fas fa-question"></i><p>Info</p></a>
           </li>          
           <?php if ($this->session->tipe_user < 3) { } else { ?>
-          <!-- <li class="nav-item">            
+          <li class="nav-item">            
             <a href="<?=site_url('statistik')?>" class="nav-link <?=$this->uri->segment(1) == 'statistik' ? "active" : ""?>">
             <i class="nav-icon fas fa-chart-line"></i><p>Statistik</p></a>
-          </li> -->
+          </li>
           <?php } ?>
           <?php if ($this->session->tipe_user < 3) { } else { ?>
           <!-- <li class="nav-item">            

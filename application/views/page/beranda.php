@@ -106,7 +106,7 @@
       </div>
       <?php if ($this->session->tipe_user < 3) { } else { ?>
       <!-- Menu-->
-      <!-- <div class="col-lg-2 col-4">        
+      <div class="col-lg-2 col-4">        
         <div class="small-box bg-white">
           <div class="inner text-center">
             <a href="<?= base_url('statistik')?>">
@@ -117,7 +117,7 @@
             Statistik
           </a>
         </div>
-      </div> -->
+      </div>
       <?php } ?>
       <?php if ($this->session->tipe_user < 10) { } else { ?>
       <!-- Menu-->

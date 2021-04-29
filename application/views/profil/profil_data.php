@@ -2,6 +2,7 @@
 <section class="content">
   <div class="container-fluid">
     <div class="card-header">
+      <a href="<?= base_url('profil/printCertificate');?>" class="btn btn-success btn-sm"><i class="fas fa-print"></i> Cetak Sertifikat</a>          
       <a href="<?= base_url('');?>" class="btn btn-info float-right btn-sm"><i class="fas fa-backward"></i> Kembali</a>          
     </div>
 
