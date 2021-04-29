@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- Aous -->
   <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/aos/aos.css">
+  <!-- pace-progress -->
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/pace-progress/themes/black/pace-theme-flat-top.css">
   <?php 
     if (isset($header_script)) {
       $this->load->view("script/".$header_script);
@@ -27,7 +29,7 @@
   ?>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed pace-green">
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-warning navbar-dark">
@@ -182,6 +184,8 @@
 <script src="<?=base_url()?>/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?=base_url()?>/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- pace-progress -->
+<script src="<?=base_url()?>/assets/plugins/pace-progress/pace.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url()?>/assets/dist/js/adminlte.js"></script>
 

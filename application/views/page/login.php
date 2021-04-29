@@ -19,8 +19,10 @@
   <link rel="stylesheet" href="<?=base_url()?>/assets/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- pace-progress -->
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/pace-progress/themes/black/pace-theme-flat-top.css">
 </head>
-<body class="hold-transition login-page bg-green" style="background-image: url(<?= base_url('/assets/dist/img/tiles.jpg')?>); background-repeat: no-repeat; background-size: cover;  background-position: center;">
+<body class="hold-transition login-page bg-green pace-green" style="background-image: url(<?= base_url('/assets/dist/img/tiles.jpg')?>); background-repeat: no-repeat; background-size: cover;  background-position: center;">
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card">
@@ -75,6 +77,8 @@
 <script src="<?=base_url()?>/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url()?>/assets/dist/js/adminlte.min.js"></script>
+<!-- pace-progress -->
+<script src="<?=base_url()?>/assets/plugins/pace-progress/pace.min.js"></script>
 <!-- jquery-validation -->
 <script src="<?=base_url()?>/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="<?=base_url()?>/assets/plugins/jquery-validation/additional-methods.min.js"></script>
